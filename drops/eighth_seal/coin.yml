@@ -1,0 +1,8 @@
+uuid: "replace‑with‑uuid4"
+seal: 8
+variant: "prototype"
+signed: false
+created: 2025-06-12
+links:
+  drop_page: "/drops/eighth_seal"
+  claim_url: "https://mint.xo/eighth_seal/claim"
