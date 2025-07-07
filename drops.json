@@ -1,0 +1,28 @@
+{
+  "drops": [
+    {
+      "slug": "brie_scroll",
+      "title": "Brie Scroll",
+      "emoji": "\ud83d\udcdc",
+      "path": "drops/brie_scroll",
+      "tags": [
+        "avatar",
+        "scroll",
+        "welcome"
+      ],
+      "published": false
+    },
+    {
+      "slug": "eighth_seal",
+      "title": "Eighth Seal",
+      "emoji": "\ud83e\uddff",
+      "path": "drops/eighth_seal",
+      "tags": [
+        "token",
+        "character",
+        "mint"
+      ],
+      "published": true
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+# =============================================================
+# XO‑Drops .gitignore — keep this repo focused on drop assets
+# =============================================================
+
+# ── OS & Editor Artefacts ────────────────────────────────────
+
+# ── XO‑Drops Specific Rules ─────────────────────────────────
+.DS_Store
+Thumbs.db
+*~
+
+# ── Python virtual‑env & caches ──────────────────────────────
+.venv/
+venv/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+.tox/
+*.py[cod]
+*$py.class
+
+# ── Node / JS artefacts (if used for tooling) ────────────────
+node_modules/
+package-lock.json
+yarn.lock
+
+# ── Logs and temp files ──────────────────────────────────────
+*.log
+*.tmp
+*.swp
+.cache/
+.lock
+.tmp/
+
+# ── Distribution / build output ──────────────────────────────
+build/
+dist/
+.output/
+release/
+reports/
+htmlcov/
+coverage.xml
+*.egg-info/
+.eggs/
+
+# ── Editor / IDE files ───────────────────────────────────────
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+
+# ── Environment and secrets ──────────────────────────────────
+.env
+.env.production
+.env.staging
+.arweave.key.json
+.xo-setup/env.sh
+.wrangler
+
+# ── Vault internals — keep only signed outputs and .gitkeep ──
+vault/*
+_incoming/
+logs/
+
+# ── Drop artefacts ───────────────────────────────────────────
+drops/**/pod/
+*.zip
+xo-core-reforged/patch_bundle/
+.history/
+*.bak
+
+# ── Large binary assets routed via Git LFS ───────────────────
+*.blend
+*.fbx
+*.stl
+*.gltf
+*.glb
+*.obj
+
+# ── Submodules and special folders ───────────────────────────
+/agent0/
+/xo-dev-scaffold-latest/
+/tmp/
+
+# ── Gitkeep Exclusions (preserve structure) ──────────────────
+!build/.gitkeep
+!dist/.gitkeep
+!vault/.signed/
+!vault/.signed/**
+!vault/daily/
+!vault/daily/**
+!vault/personas/.gitkeep
+!_incoming/.gitkeep
+!logs/.gitkeep

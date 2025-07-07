@@ -1,0 +1,19 @@
+{
+  "name": "xo-drops",
+  "version": "0.1.0",
+  "description": "XO Drops deployment config for Cloudflare Pages",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler pages deploy drops/brie_scroll --project-name=xo-drops",
+    "preview": "wrangler pages dev drops/brie_scroll",
+    "build": "cp -r drops dist",
+    "serve": "npx serve dist --single"
+  },
+  "devDependencies": {
+    "wrangler": "^3.53.1"
+  },
+  "homepage": "https://xo-drops.pages.dev",
+  "keywords": ["xo", "drops", "cloudflare", "static"],
+  "author": "XO",
+  "license": "MIT"
+}
