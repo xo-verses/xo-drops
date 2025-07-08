@@ -3,23 +3,17 @@ compatibility_date = "2025-07-08"
 account_id = "${CF_ACCOUNT_ID}"
 workers_dev = false
 
-[build]
-command = "echo 'Static XO Drops – no build needed'"
-
 [site]
 bucket = "./drops/landing"
-entry-point = "."
 
 [env.production]
 account_id = "${CF_ACCOUNT_ID}"
 vars = { PULSE_SECRET = "${PULSE_SECRET}" }
 [env.production.site]
 bucket = "./drops/landing"
-entry-point = "."
 
 [env.preview]
 account_id = "${CF_ACCOUNT_ID}"
 vars = { PULSE_SECRET = "${PULSE_SECRET}" }
 [env.preview.site]
 bucket = "./drops/landing"
-entry-point = "."
