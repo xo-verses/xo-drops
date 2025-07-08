@@ -1,42 +1,42 @@
-name: 📦 Deploy XO-Drops to Cloudflare Pages
+name: 🚀 Deploy XO Drops
 
 on:
   push:
     branches:
-      - '**'
+      - main
+      - preview
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
-    environment:
-      name: ${{ github.ref_name }}
 
     steps:
-      - name: ⬇️ Checkout Repo
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🛠️ Setup Node
+      - name: 🧰 Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
-      - name: 📥 Install Dependencies
-        run: npm install
+      - name: ☁️ Install Wrangler CLI
+        run: npm install -g wrangler
 
-      - name: ⚙️ Build Site
-        run: mkdir dist && cp -r drops/* dist/
+      - name: 🔐 Authenticate with Cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: echo "Using token"
 
-      - name: 🚀 Upload to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
-          accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          projectName: xo-drops
-          directory: dist
-          branch: ${{ github.ref_name }}
-
-      - name: ✅ Deployment Finished
-        run: echo "🎉 XO-Drops successfully deployed to Cloudflare Pages!"
+      - name: 🚀 Deploy to Cloudflare Workers
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          PULSE_SECRET: ${{ secrets.PULSE_SECRET }}
+        run: |
+          echo "⚙️ Deploying to ${{ github.ref_name }} environment..."
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            wrangler deploy --env production
+          elif [ "${{ github.ref_name }}" = "preview" ]; then
+            wrangler deploy --env preview
+          else
+            echo "⚠️ Skipping deployment: Unsupported branch ${{ github.ref_name }}"
+          fi
