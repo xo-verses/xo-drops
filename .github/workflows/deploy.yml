@@ -1,0 +1,40 @@
+name: 📦 Deploy XO-Drops to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: ⬇️ Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: 📥 Install Dependencies
+        run: npm install
+
+      - name: ⚙️ Build Site
+        run: mkdir dist && cp -r drops/* dist/
+
+      - name: 🚀 Upload to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          projectName: xo-drops
+          directory: dist
+          branch: ${{ github.ref_name }}
+
+      - name: ✅ Deployment Finished
+        run: echo "🎉 XO-Drops successfully deployed to Cloudflare Pages!"
