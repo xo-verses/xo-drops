@@ -24,7 +24,7 @@ jobs:
 
       - name: 🔐 Authenticate with Cloudflare
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: echo "Using token"
 
       - name: 🚀 Deploy to Cloudflare Workers

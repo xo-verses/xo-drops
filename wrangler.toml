@@ -1,12 +1,11 @@
 name = "xo-drops"
 compatibility_date = "2025-07-08"
-account_id = "${CF_ACCOUNT_ID}"  # Renamed and sourced via GitHub secret or environment
+account_id = "${CF_ACCOUNT_ID}"  # Sourced via CLOUDFLARE_API_TOKEN environment variable
 workers_dev = false
 
 [build]
 command = "echo 'XO Drops – no build needed'"
-upload.format = "directory"
-upload.dir = "drops/brie_scroll"
+directory = "drops/landing"
 
 [env.production]
 account_id = "${CF_ACCOUNT_ID}"
@@ -15,4 +14,9 @@ vars = { PULSE_SECRET = "${PULSE_SECRET}" }
 [env.preview]
 account_id = "${CF_ACCOUNT_ID}"
 vars = { PULSE_SECRET = "${PULSE_SECRET}" }
-upload.dir = "drops/eighth_seal"
+directory = "drops/eighth_seal"
+
+[[redirects]]
+from = "/"
+to = "/drops/landing/"
+status = 302

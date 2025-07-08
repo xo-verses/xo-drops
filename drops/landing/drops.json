@@ -1,0 +1,9 @@
+{
+  "landing": {
+    "title": "🐾 XO Drops Landing",
+    "description": "Discover the magic within the scrolls – a cosmic tale begins.",
+    "path": "landing/index.mdx",
+    "assets": ["landing/assets/cat_scroll.png"],
+    "tags": ["intro", "xo", "cat", "entrypoint"]
+  }
+}
