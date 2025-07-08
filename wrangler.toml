@@ -1,19 +1,9 @@
 name = "xo-drops"
 compatibility_date = "2025-07-08"
-account_id = "${CF_ACCOUNT_ID}"
-workers_dev = false
-
-[site]
-bucket = "./drops/landing"
+pages_build_output_dir = "./drops/landing"
 
 [env.production]
-account_id = "${CF_ACCOUNT_ID}"
 vars = { PULSE_SECRET = "${PULSE_SECRET}" }
-[env.production.site]
-bucket = "./drops/landing"
 
 [env.preview]
-account_id = "${CF_ACCOUNT_ID}"
 vars = { PULSE_SECRET = "${PULSE_SECRET}" }
-[env.preview.site]
-bucket = "./drops/landing"
