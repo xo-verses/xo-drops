@@ -1,95 +1,59 @@
-# =============================================================
-# XO‑Drops .gitignore — keep this repo focused on drop assets
-# =============================================================
+# ✨ XO-Drops
 
-# ── OS & Editor Artefacts ────────────────────────────────────
+Welcome to **XO-Drops**, the creative and decentralized asset drop system powering the XO ecosystem.
 
-# ── XO‑Drops Specific Rules ─────────────────────────────────
+## 📦 Structure
+
+- `drops/`: Contains named drop folders like `brie_scroll`, `eighth_seal`, etc.
+- `scripts/`: Contains automation tools like `drop_generate.py`.
+- `xo_vault_intro/`, `xo_light_client/`, `vault_extras/`: Subfolders with visuals, app builds, QR codes, and onboarding files.
+- `drops.json`: Drop registry manifest.
+- `.gitkeep`: Used to preserve empty directory structure.
+
+## 🛠️ Deploy & Build
+
+Cloudflare Pages auto-deploys from the `main` branch.
+
+- **Build Command:** `cp -r drops dist`
+- **Output Folder:** `dist/`
+
+## ✅ Status
+
+[![Cloudflare Pages](https://img.shields.io/badge/deployed--via-Cloudflare_Pages-brightgreen)](https://xo-drops.pages.dev)
+[![CI](https://github.com/xo-verses/xo-drops/actions/workflows/deploy.yml/badge.svg)](https://github.com/xo-verses/xo-drops/actions)
+
+## 📄 drops.json format (example)
+
+```json
+{
+  "brie_scroll": {
+    "title": "Brie Scroll",
+    "uuid": "abc-123",
+    "variant_count": 6,
+    "qr": "xo_vault_intro/qr.svg"
+  }
+}
+```
+
+## 📦 Wrangler Config
+
+```toml
+name = "xo-drops"
+type = "javascript"
+
+[site]
+bucket = "./dist"
+entry-point = "."
+
+[[routes]]
+pattern = "xo-drops.pages.dev/*"
+zone_id = "<your_zone_id>"
+```
+
+---
+Made with ❤️ by the XO constellation.
+# Local
 .DS_Store
-Thumbs.db
-*~
-
-# ── Python virtual‑env & caches ──────────────────────────────
-.venv/
-venv/
-__pycache__/
-.mypy_cache/
-.pytest_cache/
-.tox/
-*.py[cod]
-*$py.class
-
-# ── Node / JS artefacts (if used for tooling) ────────────────
-node_modules/
-package-lock.json
-yarn.lock
-
-# ── Logs and temp files ──────────────────────────────────────
-*.log
-*.tmp
-*.swp
-.cache/
-.lock
-.tmp/
-
-# ── Distribution / build output ──────────────────────────────
-build/
-dist/
-.output/
-release/
-reports/
-htmlcov/
-coverage.xml
-*.egg-info/
-.eggs/
-
-# ── Editor / IDE files ───────────────────────────────────────
-.vscode/
-.idea/
-*.sublime-workspace
-*.sublime-project
+.env.*
+.dev/
 *.code-workspace
-
-# ── Environment and secrets ──────────────────────────────────
-.env
-.env.production
-.env.staging
-.arweave.key.json
-.xo-setup/env.sh
-.wrangler
-
-# ── Vault internals — keep only signed outputs and .gitkeep ──
-vault/*
-_incoming/
-logs/
-
-# ── Drop artefacts ───────────────────────────────────────────
-drops/**/pod/
-*.zip
-xo-core-reforged/patch_bundle/
-.history/
-*.bak
-
-# ── Large binary assets routed via Git LFS ───────────────────
-*.blend
-*.fbx
-*.stl
-*.gltf
-*.glb
-*.obj
-
-# ── Submodules and special folders ───────────────────────────
-/agent0/
-/xo-dev-scaffold-latest/
-/tmp/
-
-# ── Gitkeep Exclusions (preserve structure) ──────────────────
-!build/.gitkeep
-!dist/.gitkeep
-!vault/.signed/
-!vault/.signed/**
-!vault/daily/
-!vault/daily/**
-!vault/personas/.gitkeep
-!_incoming/.gitkeep
-!logs/.gitkeep

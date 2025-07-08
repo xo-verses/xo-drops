@@ -1,6 +1,6 @@
 name = "xo-drops"
 compatibility_date = "2025-07-08"
-account_id = "your_account_id"  # Replace with actual Cloudflare Account ID
+account_id = "${CF_ACCOUNT_ID}"  # Renamed and sourced via GitHub secret or environment
 workers_dev = false
 
 [build]
@@ -9,4 +9,10 @@ upload.format = "directory"
 upload.dir = "drops/brie_scroll"
 
 [env.production]
-vars = { PULSE_SECRET = "your_pulse_secret_here" }  # Replace with your real secret or use wrangler secret
+account_id = "${CF_ACCOUNT_ID}"
+vars = { PULSE_SECRET = "${PULSE_SECRET}" }
+
+[env.preview]
+account_id = "${CF_ACCOUNT_ID}"
+vars = { PULSE_SECRET = "${PULSE_SECRET}" }
+upload.dir = "drops/eighth_seal"
