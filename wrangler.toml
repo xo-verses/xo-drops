@@ -1,22 +1,25 @@
 name = "xo-drops"
 compatibility_date = "2025-07-08"
-account_id = "${CF_ACCOUNT_ID}"  # Sourced via CLOUDFLARE_API_TOKEN environment variable
+account_id = "${CF_ACCOUNT_ID}"
 workers_dev = false
 
 [build]
-command = "echo 'XO Drops – no build needed'"
-directory = "drops/landing"
+command = "echo 'Static XO Drops – no build needed'"
+
+[site]
+bucket = "./drops/landing"
+entry-point = "."
 
 [env.production]
 account_id = "${CF_ACCOUNT_ID}"
 vars = { PULSE_SECRET = "${PULSE_SECRET}" }
+[env.production.site]
+bucket = "./drops/landing"
+entry-point = "."
 
 [env.preview]
 account_id = "${CF_ACCOUNT_ID}"
 vars = { PULSE_SECRET = "${PULSE_SECRET}" }
-directory = "drops/eighth_seal"
-
-[[redirects]]
-from = "/"
-to = "/drops/landing/"
-status = 302
+[env.preview.site]
+bucket = "./drops/landing"
+entry-point = "."
